@@ -206,7 +206,8 @@ function add_scripts() { // добавление скриптов
 add_action('wp_print_styles', 'add_styles'); // приклеем ф-ю на добавление стилей в хедер
 function add_styles() { // добавление стилей
     if(is_admin()) return false; // если мы в админке - ничего не делаем
-    wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
+	wp_enqueue_style( 'FA', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' ); // FontAwesome
+	wp_enqueue_style( 'bs', get_template_directory_uri().'/css/bootstrap.min.css' ); // бутстрап
 	wp_enqueue_style( 'main', get_template_directory_uri().'/style.css' ); // основные стили шаблона
 }
 
