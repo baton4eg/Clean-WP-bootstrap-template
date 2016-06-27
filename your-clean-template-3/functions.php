@@ -4,6 +4,107 @@
  * @package WordPress
  * @subpackage your-clean-template-3
  */
+ 
+ 
+ 
+/**------------------------------------------------
+Отключим расстановки тегов параграфов
+!!!Раскомментировать по желанию
+------------------------------------------------**/
+//remove_filter('the_content', 'wpautop');     //записи
+//remove_filter('the_excerpt', 'wpautop');     //цитаты
+//remove_filter('comment_text', 'wpautop');    //комментарии
+
+
+/**------------------------------------------------
+Отключим стандартный Jquery и подключим CDN
+------------------------------------------------**/
+if (!is_admin()) {
+	function de_script() {
+	   wp_dequeue_script( 'jquery' );
+	   wp_deregister_script( 'jquery' );
+	   wp_register_script('jquery', "//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", false, null);
+	   wp_enqueue_script('jquery');
+	}
+	add_action('wp_print_scripts', 'de_script', 100 );
+}
+
+
+/**------------------------------------------------
+Увеличим ширину блоков NGG в админке
+------------------------------------------------**/
+
+add_action('admin_head', 'my_custom_field');
+
+function my_custom_field() {
+  echo '<style>
+#ngg-listimages .column-5 textarea {
+    min-height: 315px;
+}
+  </style>';
+}
+
+
+
+/**------------------------------------------------
+Добавим классы кнопкам вперед назад в новостях
+------------------------------------------------**/
+
+add_filter('next_post_link', 'post_link_attributes');
+add_filter('previous_post_link', 'post_link_attributes');
+ 
+function post_link_attributes($output) {
+    $code = 'class="btn btn-default btn-block"';
+    return str_replace('<a href=', '<a '.$code.' href=', $output);
+}
+
+
+
+/**------------------------------------------------
+Вырезка текста для новостей
+использование:
+echo excerpt(30); //30 кол-во символов
+------------------------------------------------**/
+
+function excerpt($limit) {
+  $excerpt = explode(' ', get_the_excerpt(), $limit);
+  if (count($excerpt)>=$limit) {
+    array_pop($excerpt);
+    $excerpt = implode(" ",$excerpt).'...';
+  } else {
+    $excerpt = implode(" ",$excerpt);
+  }   
+  $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
+  return $excerpt;
+}
+
+function content($limit) {
+  $content = explode(' ', get_the_content(), $limit);
+  if (count($content)>=$limit) {
+    array_pop($content);
+    $content = implode(" ",$content).'...';
+  } else {
+    $content = implode(" ",$content);
+  }   
+  $content = preg_replace('/\[.+\]/','', $content);
+  $content = apply_filters('the_content', $content);
+  $content = str_replace(']]>', ']]&gt;', $content);
+  return $content;
+}
+
+/**------------------------------------------------
+Поправим вывод ссылок (поправим или испортим ??)
+использовать только с Yoast seo !!!
+Вынести из комментария, оригинал тайтла удалить
+
+function typical_title() { // функция вывода тайтла
+	add_theme_support('title-tag');
+	global $page, $paged; // переменные пагинации должны быть глобыльными
+	wp_title('|', true, 'right'); // вывод стандартного заголовка с разделителем "|"
+//	bloginfo('name'); // вывод названия сайта
+}
+------------------------------------------------**/
+
 
 function typical_title() { // функция вывода тайтла
 	global $page, $paged; // переменные пагинации должны быть глобыльными
