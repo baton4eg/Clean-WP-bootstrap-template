@@ -18,6 +18,7 @@
 
 /**------------------------------------------------
 Отключим стандартный Jquery и подключим CDN
+Желательно удалить авторское подключение Jquery ниже
 ------------------------------------------------**/
 if (!is_admin()) {
 	function de_script() {
@@ -199,8 +200,6 @@ function pagination() { // функция вывода пагинации
 add_action('wp_footer', 'add_scripts'); // приклеем ф-ю на добавление скриптов в футер
 function add_scripts() { // добавление скриптов
     if(is_admin()) return false; // если мы в админке - ничего не делаем
-    wp_deregister_script('jquery'); // выключаем стандартный jquery
-    wp_enqueue_script('jquery','//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js','','',true); // добавляем свой
     wp_enqueue_script('bootstrap', get_template_directory_uri().'/js/bootstrap.min.js','','',true); // бутстрап
     wp_enqueue_script('main', get_template_directory_uri().'/js/main.js','','',true); // и скрипты шаблона
 }
