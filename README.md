@@ -1,5 +1,4 @@
 # Clean-WP-bootstrap-template
-# your-clean-template-3
 
 !!! ВНИМАНИЕ !!! <br />
 Этот шаблон не является моей разработкой ! <br />
