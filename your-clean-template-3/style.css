@@ -4,9 +4,70 @@ Theme URI: https://github.com/saxap/clean-wp-template
 Version: 3.0
 Tags: clean, development, html5, bootstrap
 Description: Clean wordpress theme with minimal bootstrap3 markup for fast development starting
-Author: saxa:p
+Author: saxap
 Author URI: http://dontforget.pro
 */
+
+
+
+/*==========================================================================
+Customize Contact Form 7
+==========================================================================*/
+
+/* Style form elements 
+.wpcf7-form-control:not(.wpcf7-submit):not(.wpcf7-range):not(.wpcf7-checkbox):not(.wpcf7-radio):not(.wpcf7-acceptance):not(.wpcf7-file) {
+    .form-control;
+}
+.wpcf7-checkbox .wpcf7-list-item {
+    .checkbox;
+}
+.wpcf7-checkbox.checkbox-inline .wpcf7-list-item {
+    .checkbox-inline;
+}
+.wpcf7-radio .wpcf7-list-item {
+    .radio;
+}
+.wpcf7-radio.radio-inline .wpcf7-list-item {
+    .radio-inline;
+}
+.wpcf7-submit {
+    .btn;
+    .btn-primary;
+}
+
+/* Style validation */
+div.wpcf7-validation-errors {
+    color: #a94442;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #a94442;
+    background: #F2DEDE;
+    text-align: center;
+    font-weight: 600;
+}
+span.wpcf7-not-valid-tip {
+    background-color: #f2dede;
+    color: #a94442;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #a94442;
+}
+.wpcf7-form-control.wpcf7-not-valid {
+    border-color: @state-danger-text !important;
+}
+
+/* = Own base
+-------------------------------------------------------------- */
+img {
+	max-width: 100%;
+	width: auto \9;
+	height: auto;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
 
 
 @media (min-width: 979px) { 
